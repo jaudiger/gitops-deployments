@@ -1,0 +1,30 @@
+name: Continuous Integration ‑ Audit
+
+on:
+  push:
+    paths:
+      - "**/*.{tf,tfvars,hcl}"
+  pull_request:
+    paths:
+      - "**/*.{tf,tfvars,hcl}"
+  workflow_dispatch:
+
+concurrency:
+  group: audit-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Brioche
+        uses: brioche-dev/setup-brioche@v1
+
+      - name: Install Terraform tools
+        run: brioche install -r trivy
+
+      - name: Run security scanner
+        run: trivy conf --severity HIGH,CRITICAL .

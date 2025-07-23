@@ -1,0 +1,35 @@
+name: Continuous Integration ‑ Static Analysis
+
+on:
+  push:
+    paths:
+      - "**/*.{tf,tfvars,hcl}"
+  pull_request:
+    paths:
+      - "**/*.{tf,tfvars,hcl}"
+  workflow_dispatch:
+
+concurrency:
+  group: static-analysis-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  static-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Brioche
+        uses: brioche-dev/setup-brioche@v1
+
+      - name: Install Terraform tools
+        run: |
+          brioche install -r terraform
+          brioche install -r tflint
+
+      - name: Check formatting
+        run: terraform fmt -check -recursive -write=false -diff
+
+      - name: Check linting
+        run: tflint --recursive
