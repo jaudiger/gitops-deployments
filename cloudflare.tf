@@ -50,13 +50,6 @@ resource "cloudflare_account_token" "terraform_state_bucket_token" {
       "com.cloudflare.edge.r2.bucket.98a29df1696812429cda3eae6250269c_eu_terraform-state-bucket" = "*"
     }
   }]
-
-  # Ignore changes to token secret value, since the `value` is write-only, and cannot be read back by Terraform
-  lifecycle {
-    ignore_changes = [
-      value
-    ]
-  }
 }
 
 resource "cloudflare_account_token" "pages_token" {
@@ -71,11 +64,4 @@ resource "cloudflare_account_token" "pages_token" {
       "com.cloudflare.api.account.98a29df1696812429cda3eae6250269c" = "*"
     }
   }]
-
-  # Ignore changes to token secret value, since the `value` is write-only, and cannot be read back by Terraform
-  lifecycle {
-    ignore_changes = [
-      value
-    ]
-  }
 }
