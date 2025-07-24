@@ -30,7 +30,7 @@ module "cloudflare_page" {
   source = "./modules/cloudflare-page"
 
   account_id = var.cloudflare_account_id
-  zone_id    = var.cloudflare_zone_id
+  zone_id    = data.cloudflare_zone.domain_zone[each.value.deployment.domain.name].zone_id
   name       = each.key
   domain     = each.value.deployment.domain
   subdomains = each.value.deployment.subdomains

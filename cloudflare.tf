@@ -7,6 +7,15 @@ locals {
   }
 }
 
+data "cloudflare_zone" "domain_zone" {
+  for_each = local.cloudflare_domains
+
+  filter = {
+    name       = each.key
+    account_id = var.cloudflare_account_id
+  }
+}
+
 # Manage the Cloudflare R2 Bucket
 resource "cloudflare_r2_bucket" "terraform_state_bucket" {
   account_id    = var.cloudflare_account_id
@@ -16,9 +25,11 @@ resource "cloudflare_r2_bucket" "terraform_state_bucket" {
   storage_class = "Standard"
 }
 
-# Manage the Cloudflare Bot Management
-resource "cloudflare_bot_management" "this" {
-  zone_id            = var.cloudflare_zone_id
+# Manage the Cloudflare Bot Management (one per zone)
+resource "cloudflare_bot_management" "bot_management" {
+  for_each = data.cloudflare_zone.domain_zone
+
+  zone_id            = each.value.zone_id
   ai_bots_protection = "block"
   auto_update_model  = true
   crawler_protection = "enabled"
