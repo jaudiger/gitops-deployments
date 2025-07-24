@@ -11,13 +11,6 @@ resource "github_repository" "this" {
   has_wiki      = false
 
   delete_branch_on_merge = true
-
-  dynamic "pages" {
-    for_each = var.static_website_deployment ? [1] : []
-    content {
-      build_type = "workflow"
-    }
-  }
 }
 
 # Create a ruleset for main branch protection
