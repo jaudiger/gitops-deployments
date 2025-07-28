@@ -1,4 +1,4 @@
-name: Continuous Integration ‑ Static Analysis
+name: Continuous Integration - Static Analysis
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: Continuous Integration ‑ Audit
+name: Continuous Integration - Audit
 
 on:
   push:
