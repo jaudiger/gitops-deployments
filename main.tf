@@ -16,7 +16,8 @@ module "github_repository" {
 
   name                   = each.key
   description            = each.value.description
-  github_actions_secrets = try(each.value.github_actions_secrets, {})
+  github_topics          = try(each.value.topics, [])
+  github_actions_secrets = try(each.value.actions_secrets, {})
 }
 
 # Ensure each Cloudflare Page exists, and properly configured

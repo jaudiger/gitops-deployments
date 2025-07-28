@@ -34,6 +34,14 @@ resource "github_repository_ruleset" "this" {
   }
 }
 
+# Add topics to the repository if any
+resource "github_repository_topics" "this" {
+  count = length(var.github_topics) > 0 ? 1 : 0
+
+  repository = github_repository.this.name
+  topics     = var.github_topics
+}
+
 # Add secrets for GitHub Actions if any
 resource "github_actions_secret" "this" {
   for_each = var.github_actions_secrets
