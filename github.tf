@@ -1,6 +1,16 @@
 locals {
   # List all the GitHub repositories that need to be managed
   github_repositories = {
+    "brainfuck-rs" = {
+      description = "An other brainfuck interpreter"
+      topics = [
+        "rust",
+        "brainfuck"
+      ]
+      deployment = {
+        enabled = false
+      }
+    },
     "bevy-calculator" = {
       description = "Calculator made with Bevy (Wasm)"
       topics = [
