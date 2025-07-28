@@ -11,7 +11,7 @@ locals {
         enabled = false
       }
     },
-    "bevy-calculator" = {
+    "calculator-gui-rs" = {
       description = "Calculator made with Bevy (Wasm)"
       topics = [
         "rust",
@@ -26,7 +26,7 @@ locals {
           owner = false
         }
         subdomains = [
-          "bevy-calculator",
+          "calculator-gui-rs",
         ]
       }
       actions_secrets = {
