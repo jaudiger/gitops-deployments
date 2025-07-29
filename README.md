@@ -18,7 +18,7 @@ The CI/CD pipeline is configured using GitHub Actions. The workflow is defined i
 
 - Static Analysis (Terraform)
 
-Additionally, Dependabot is configured to automatically update dependencies (GitHub Actions, Terraform providers, Cargo dependencies).
+Additionally, Dependabot is configured to automatically update dependencies (GitHub Actions, Terraform providers).
 
 ## Repository configuration
 
