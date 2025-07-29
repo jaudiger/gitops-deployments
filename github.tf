@@ -11,6 +11,29 @@ locals {
         enabled = false
       }
     },
+    "brainfuck-gui-rs" = {
+      description = "Brainfuck interpreter GUI made with egui (Wasm)"
+      topics = [
+        "rust",
+        "egui",
+        "ui",
+        "wasm"
+      ]
+      deployment = {
+        enabled = true
+        domain = {
+          name  = "jaudiger.dev"
+          owner = false
+        }
+        subdomains = [
+          "brainfuck-gui-rs",
+        ]
+      }
+      actions_secrets = {
+        "CLOUDFLARE_API_TOKEN"  = cloudflare_account_token.pages_token.value
+        "CLOUDFLARE_ACCOUNT_ID" = var.cloudflare_account_id
+      }
+    },
     "calculator-gui-rs" = {
       description = "Calculator made with Bevy (Wasm)"
       topics = [
