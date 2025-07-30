@@ -3,7 +3,7 @@ resource "github_repository" "this" {
   name        = var.name
   description = var.description
 
-  visibility = "public"
+  visibility = var.visibility
 
   has_downloads = false
   has_issues    = false
