@@ -70,6 +70,15 @@ locals {
         "terraform",
       ]
     },
+    "personal-scripts" = {
+      description = "The scripts I use to automate my daily tasks"
+      topics = [
+        "automation",
+        "script",
+        "bash",
+        "nushell"
+      ]
+    },
     "personal-website" = {
       description = "The source code of my personal website"
       topics = [
