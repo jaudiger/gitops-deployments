@@ -27,7 +27,7 @@ module "cloudflare_page" {
     for key, value in local.github_repositories :
     key => value
     # Only create a Cloudflare Page if the repository has a deployment
-    if value.deployment.enabled
+    if can(value.deployment)
   }
   source = "./modules/cloudflare-page"
 

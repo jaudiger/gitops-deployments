@@ -7,9 +7,6 @@ locals {
         "rust",
         "brainfuck"
       ]
-      deployment = {
-        enabled = false
-      }
     },
     "brainfuck-gui-rs" = {
       description = "Brainfuck interpreter GUI made with egui (Wasm)"
@@ -20,7 +17,6 @@ locals {
         "wasm"
       ]
       deployment = {
-        enabled = true
         domain = {
           name  = "jaudiger.dev"
           owner = false
@@ -43,7 +39,6 @@ locals {
         "wasm"
       ]
       deployment = {
-        enabled = true
         domain = {
           name  = "jaudiger.dev"
           owner = false
@@ -66,9 +61,6 @@ locals {
         "home-manager",
         "nix-darwin",
       ]
-      deployment = {
-        enabled = false
-      }
     },
     "gitops-deployments" = {
       description = "Source of truth of my deployments"
@@ -77,9 +69,6 @@ locals {
         "iac",
         "terraform",
       ]
-      deployment = {
-        enabled = false
-      }
     },
     "personal-website" = {
       description = "The source code of my personal website"
@@ -91,7 +80,6 @@ locals {
         "scripty"
       ]
       deployment = {
-        enabled = true
         domain = {
           name  = "jaudiger.dev"
           owner = true
@@ -112,9 +100,6 @@ locals {
         "github-actions",
         "workflow-call",
       ]
-      deployment = {
-        enabled = false
-      }
     }
   }
 }
