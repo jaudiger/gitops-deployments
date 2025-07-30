@@ -109,6 +109,14 @@ locals {
         "github-actions",
         "workflow-call",
       ]
-    }
+    },
+    "vscode-dev-containers" = {
+      description = "Development containers for Visual Studio Code"
+      topics = [
+        "vscode",
+        "dev-container",
+        "development-environment",
+      ]
+    },
   }
 }
