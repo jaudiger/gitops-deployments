@@ -12,10 +12,12 @@ variable "github_topics" {
   description = "List of topics to add to the repository."
   type        = list(string)
   default     = []
+  nullable    = false
 }
 
 variable "github_actions_secrets" {
   description = "List of secrets to add to GitHub Actions."
   type        = map(string)
   default     = {}
+  nullable    = false
 }

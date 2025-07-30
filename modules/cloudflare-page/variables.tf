@@ -26,4 +26,5 @@ variable "subdomains" {
   description = "List of sub-domain names to add as DNS records."
   type        = list(string)
   default     = []
+  nullable    = true
 }
