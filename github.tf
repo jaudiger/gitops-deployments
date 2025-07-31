@@ -9,12 +9,13 @@ locals {
       ]
     },
     "brainfuck-gui-rs" = {
-      description = "Brainfuck interpreter GUI made with egui (Wasm)"
+      description = "Brainfuck interpreter GUI in Rust + egui (WebAssembly)"
       topics = [
         "rust",
         "egui",
         "ui",
-        "wasm"
+        "webassembly",
+        "wasm",
       ]
       deployment = {
         domain = {
