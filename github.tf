@@ -54,6 +54,15 @@ locals {
         "CLOUDFLARE_ACCOUNT_ID" = var.cloudflare_account_id
       }
     },
+    "containerized-services" = {
+      description = "Containerized services for development and testing"
+      topics = [
+        "services",
+        "container",
+        "docker",
+        "docker-compose",
+      ]
+    },
     "dotfiles" = {
       description = "Those are designed for my use cases ;)"
       topics = [
