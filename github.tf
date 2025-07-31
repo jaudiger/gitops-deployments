@@ -31,11 +31,12 @@ locals {
       }
     },
     "calculator-gui-rs" = {
-      description = "Calculator made with Bevy (Wasm)"
+      description = "Calculator GUI with Rust + Bevy (WebAssembly)"
       topics = [
         "rust",
         "bevy",
         "ui",
+        "webassembly",
         "wasm"
       ]
       deployment = {
