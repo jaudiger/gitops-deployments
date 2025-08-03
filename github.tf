@@ -81,6 +81,26 @@ locals {
         "terraform",
       ]
     },
+    "noalloc-slip-rs" = {
+      description = "A Rust crate for encoding and decoding SLIP frames in no-std environments"
+      topics = [
+        "rust",
+        "library",
+        "crate",
+        "no-std",
+        "slip"
+      ]
+    },
+    "noalloc-vec-rs" = {
+      description = "A Rust crate for handling vectors in no-std environments"
+      topics = [
+        "rust",
+        "library",
+        "crate",
+        "no-std",
+        "vec"
+      ]
+    },
     "personal-scripts" = {
       description = "The scripts I use to automate my daily tasks"
       topics = [
