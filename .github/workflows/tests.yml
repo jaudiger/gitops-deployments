@@ -1,0 +1,42 @@
+name: Continuous Integration - Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: tests-${{ github.ref_name }}
+  cancel-in-progress: true
+
+env:
+  TF_PLAN: terraform.plan
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Install Brioche
+        uses: brioche-dev/setup-brioche@v1.3.1
+
+      - name: Install Terraform
+        run: brioche install -r terraform
+
+      - name: Cache terraform registry
+        uses: actions/cache@v4.2.3
+        with:
+          path: |
+            .terraform
+          key: tests-${{ hashFiles('**/.terraform.lock.hcl') }}
+
+      - name: Generate the plan of Terraform
+        env:
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+          TF_VAR_crates_io_api_token: ${{ secrets.TF_VAR_CRATES_IO_API_TOKEN }}
+        run: |
+          terraform init -backend-config=access_key=${{ secrets.BACKEND_ACCESS_KEY }} -backend-config=secret_key=${{ secrets.BACKEND_SECRET_KEY }}
+          terraform plan -out "$TF_PLAN"

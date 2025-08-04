@@ -23,6 +23,7 @@ terraform apply
 The CI/CD pipeline is configured using GitHub Actions. The workflow is defined in the [`.github/workflows`](.github/workflows) folder:
 
 - Static Analysis (Terraform)
+- Tests (Terraform plan)
 
 Additionally, Dependabot is configured to automatically update dependencies (GitHub Actions, Terraform providers).
 
