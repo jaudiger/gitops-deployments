@@ -90,6 +90,9 @@ locals {
         "no-std",
         "slip"
       ]
+      actions_secrets = {
+        "CRATES_IO_API_TOKEN" = var.crates_io_api_token
+      }
     },
     "noalloc-vec-rs" = {
       description = "A Rust crate for handling vectors in no-std environments"
@@ -100,6 +103,9 @@ locals {
         "no-std",
         "vec"
       ]
+      actions_secrets = {
+        "CRATES_IO_API_TOKEN" = var.crates_io_api_token
+      }
     },
     "personal-scripts" = {
       description = "The scripts I use to automate my daily tasks"
