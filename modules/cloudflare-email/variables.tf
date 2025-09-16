@@ -20,6 +20,6 @@ variable "email_local_part" {
 }
 
 variable "email_forward_to" {
-  description = "Email forwarding address."
-  type        = string
+  description = "Email forwarding addresses."
+  type        = list(string)
 }

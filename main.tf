@@ -1,3 +1,10 @@
+locals {
+  email_parts = {
+    for key in keys(local.cloudflare_emails) :
+    key => split("@", key)
+  }
+}
+
 # Ensure each Cloudflare domain exists, and properly configured
 resource "cloudflare_registrar_domain" "this" {
   for_each = local.cloudflare_domains
@@ -43,8 +50,8 @@ module "cloudflare_email" {
   for_each = {
     for key, value in local.cloudflare_emails :
     key => {
-      local_part  = split("@", key)[0]
-      domain_part = split("@", key)[1]
+      local_part  = local.email_parts[key][0]
+      domain_part = local.email_parts[key][1]
       forward_to  = value.forward_to
     }
   }

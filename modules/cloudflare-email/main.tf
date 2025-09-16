@@ -1,14 +1,21 @@
-# Enable Email Routing
-resource "cloudflare_email_routing_settings" "this" {
-  zone_id = var.zone_id
+locals {
+  forward_actions = [
+    for email in var.email_forward_to : {
+      type  = "forward"
+      value = [email]
+    }
+  ]
 }
 
+# Add email forward addresses
 resource "cloudflare_email_routing_address" "this" {
+  for_each = toset(var.email_forward_to)
+
   account_id = var.account_id
-  email      = var.email_forward_to
+  email      = each.key
 }
 
-# Add alias with catch-all behavior
+# Add routing rules
 resource "cloudflare_email_routing_rule" "this" {
   name    = ""
   zone_id = var.zone_id
@@ -19,10 +26,7 @@ resource "cloudflare_email_routing_rule" "this" {
     value = "${var.email_local_part}@${var.email_domain_part}"
   }]
 
-  actions = [{
-    type  = "forward"
-    value = [cloudflare_email_routing_address.this.email]
-  }]
+  actions = local.forward_actions
 }
 
 resource "cloudflare_email_routing_catch_all" "this" {
@@ -33,13 +37,5 @@ resource "cloudflare_email_routing_catch_all" "this" {
     type = "all"
   }]
 
-  actions = [{
-    type  = "forward"
-    value = [cloudflare_email_routing_address.this.email]
-  }]
-}
-
-resource "cloudflare_email_routing_dns" "this" {
-  zone_id = var.zone_id
-  name    = var.email_domain_part
+  actions = local.forward_actions
 }

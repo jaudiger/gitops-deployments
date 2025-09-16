@@ -9,7 +9,10 @@ locals {
   # List all the email addresses that need to be forwarded
   cloudflare_emails = {
     "contact@jaudiger.dev" = {
-      forward_to = "jeremy.audiger@outlook.fr"
+      forward_to = [
+        "jeremy.audiger@icloud.com",
+        "jeremy.audiger@outlook.fr",
+      ]
     },
   }
 }
