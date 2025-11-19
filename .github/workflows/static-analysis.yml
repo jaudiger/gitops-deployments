@@ -3,11 +3,13 @@ name: Continuous Integration - Static Analysis
 on:
   push:
     paths:
+      - ".github/workflows/static-analysis.yml"
       - "**/*.tf"
       - "**/*.tfvars"
       - "**/*.hcl"
   pull_request:
     paths:
+      - ".github/workflows/static-analysis.yml"
       - "**/*.tf"
       - "**/*.tfvars"
       - "**/*.hcl"

@@ -2,7 +2,17 @@ name: Continuous Integration - Tests
 
 on:
   push:
+    paths:
+      - ".github/workflows/tests.yml"
+      - "**/*.tf"
+      - "**/*.tfvars"
+      - "**/*.hcl"
   pull_request:
+    paths:
+      - ".github/workflows/tests.yml"
+      - "**/*.tf"
+      - "**/*.tfvars"
+      - "**/*.hcl"
   workflow_dispatch:
 
 concurrency:
