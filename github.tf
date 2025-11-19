@@ -9,7 +9,7 @@ locals {
       ]
     },
     "brainfuck-gui-rs" = {
-      description = "Brainfuck interpreter GUI in Rust + egui (WebAssembly)"
+      description = "Brainfuck interpreter GUI with Rust + egui (WebAssembly)"
       topics = [
         "rust",
         "egui",
@@ -57,7 +57,7 @@ locals {
     "containerized-services" = {
       description = "Containerized services for development and testing"
       topics = [
-        "services",
+        "service",
         "container",
         "docker",
         "docker-compose",
