@@ -63,6 +63,16 @@ locals {
         "docker-compose",
       ]
     },
+    "distributed-job-system-rs" = {
+      description = "Example of a distributed job system with Rust"
+      topics = [
+        "rust",
+        "service",
+        "container",
+        "docker",
+        "docker-compose",
+      ]
+    }
     "dotfiles" = {
       description = "Those are designed for my use cases ;)"
       topics = [
