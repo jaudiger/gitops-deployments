@@ -56,9 +56,9 @@ resource "cloudflare_account_token" "terraform_state_bucket_token" {
     permission_groups = [{
       id = "2efd5506f9c8494dacb1fa10a3e7d5b6"
     }]
-    resources = {
+    resources = jsonencode({
       "com.cloudflare.edge.r2.bucket.98a29df1696812429cda3eae6250269c_eu_terraform-state-bucket" = "*"
-    }
+    })
   }]
 }
 
@@ -70,8 +70,8 @@ resource "cloudflare_account_token" "pages_token" {
     permission_groups = [{
       id = "8d28297797f24fb8a0c332fe0866ec89"
     }]
-    resources = {
+    resources = jsonencode({
       "com.cloudflare.api.account.98a29df1696812429cda3eae6250269c" = "*"
-    }
+    })
   }]
 }
