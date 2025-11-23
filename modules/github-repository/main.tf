@@ -28,6 +28,12 @@ resource "github_repository_ruleset" "this" {
     }
   }
 
+  bypass_actors {
+    actor_id = "5"
+    actor_type  = "RepositoryRole"
+    bypass_mode = "always"
+  }
+
   rules {
     deletion                = true
     required_linear_history = true
