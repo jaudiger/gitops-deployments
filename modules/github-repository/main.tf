@@ -29,7 +29,7 @@ resource "github_repository_ruleset" "this" {
   }
 
   bypass_actors {
-    actor_id = "5"
+    actor_id = "5" # Administrator
     actor_type  = "RepositoryRole"
     bypass_mode = "always"
   }
