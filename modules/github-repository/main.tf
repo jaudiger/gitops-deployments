@@ -23,7 +23,7 @@ resource "github_repository_ruleset" "this" {
 
   conditions {
     ref_name {
-      include = ["refs/heads/main"]
+      include = ["~DEFAULT_BRANCH"]
       exclude = []
     }
   }
@@ -31,7 +31,14 @@ resource "github_repository_ruleset" "this" {
   rules {
     deletion                = true
     required_linear_history = true
+    required_signatures     = true
     non_fast_forward        = true
+
+    pull_request {
+      dismiss_stale_reviews_on_push     = true
+      required_review_thread_resolution = true
+      required_approving_review_count   = 1
+    }
   }
 }
 
