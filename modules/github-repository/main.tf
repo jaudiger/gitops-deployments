@@ -5,7 +5,6 @@ resource "github_repository" "this" {
 
   visibility = var.visibility
 
-  has_downloads = false
   has_issues    = false
   has_projects  = false
   has_wiki      = false
