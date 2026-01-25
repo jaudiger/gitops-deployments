@@ -5,9 +5,9 @@ resource "github_repository" "this" {
 
   visibility = var.visibility
 
-  has_issues    = false
-  has_projects  = false
-  has_wiki      = false
+  has_issues   = false
+  has_projects = false
+  has_wiki     = false
 
   allow_auto_merge       = true
   delete_branch_on_merge = true
