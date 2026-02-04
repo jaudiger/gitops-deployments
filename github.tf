@@ -1,13 +1,6 @@
 locals {
   # List all the GitHub repositories that need to be managed
   github_repositories = {
-    "brainfuck-rs" = {
-      description = "An other brainfuck interpreter"
-      topics = [
-        "rust",
-        "brainfuck"
-      ]
-    },
     "brainfuck-gui-rs" = {
       description = "Brainfuck interpreter GUI with Rust + egui (WebAssembly)"
       topics = [
@@ -30,6 +23,13 @@ locals {
         "CLOUDFLARE_API_TOKEN"  = cloudflare_account_token.pages_token.value
         "CLOUDFLARE_ACCOUNT_ID" = var.cloudflare_account_id
       }
+    },
+    "brainfuck-rs" = {
+      description = "An other brainfuck interpreter"
+      topics = [
+        "rust",
+        "brainfuck"
+      ]
     },
     "calculator-gui-rs" = {
       description = "Calculator GUI with Rust + Bevy (WebAssembly)"
@@ -72,7 +72,7 @@ locals {
         "docker",
         "docker-compose",
       ]
-    }
+    },
     "divan-bench-tools" = {
       description = "Python scripts for processing and comparing Divan benchmark results"
       topics = [
