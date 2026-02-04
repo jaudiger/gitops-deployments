@@ -73,6 +73,14 @@ locals {
         "docker-compose",
       ]
     }
+    "divan-bench-tools" = {
+      description = "Python scripts for processing and comparing Divan benchmark results"
+      topics = [
+        "python",
+        "divan",
+        "benchmark",
+      ]
+    },
     "dotfiles" = {
       description = "Those are designed for my use cases ;)"
       topics = [
