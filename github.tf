@@ -99,6 +99,15 @@ locals {
         "terraform",
       ]
     },
+    "hello-zigwin" = {
+      description = "A minimal Windows XP-compatible GUI application written in Zig"
+      topics = [
+        "zig",
+        "win32",
+        "windows-xp",
+        "cross-compilation",
+      ]
+    },
     "noalloc-slip-rs" = {
       description = "A Rust crate for encoding and decoding SLIP frames in no-std environments"
       topics = [
