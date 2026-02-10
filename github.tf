@@ -99,7 +99,7 @@ locals {
         "terraform",
       ]
     },
-    "hello-zigwin" = {
+    "hello-winxp-zig" = {
       description = "A minimal Windows XP-compatible GUI application written in Zig"
       topics = [
         "zig",
