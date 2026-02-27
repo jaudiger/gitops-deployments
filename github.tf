@@ -91,6 +91,14 @@ locals {
         "nix-darwin",
       ]
     },
+    "educational-game-rs" = {
+      description = "An educational game built with Rust + Bevy"
+      topics = [
+        "rust",
+        "bevy",
+        "game",
+      ]
+    },
     "gitops-deployments" = {
       description = "Source of truth of my deployments"
       topics = [
@@ -106,6 +114,15 @@ locals {
         "win32",
         "windows-xp",
         "cross-compilation",
+      ]
+    },
+    "kube-zig" = {
+      description = "A Kubernetes client library written in Zig"
+      topics = [
+        "zig",
+        "kubernetes",
+        "openapi",
+        "code-generation",
       ]
     },
     "noalloc-slip-rs" = {
@@ -180,6 +197,16 @@ locals {
         "vscode",
         "dev-container",
         "development-environment",
+      ]
+    },
+    "zcodeprism" = {
+      description = "A semantic code graph library, CLI, and MCP server written in Zig"
+      topics = [
+        "zig",
+        "tree-sitter",
+        "code-analysis",
+        "mcp",
+        "lsp",
       ]
     },
   }
