@@ -191,10 +191,9 @@ locals {
         "workflow-call",
       ]
     },
-    "vscode-dev-containers" = {
-      description = "Development containers for Visual Studio Code"
+    "dev-containers" = {
+      description = "Development containers"
       topics = [
-        "vscode",
         "dev-container",
         "development-environment",
       ]
