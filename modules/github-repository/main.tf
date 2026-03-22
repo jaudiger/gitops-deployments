@@ -47,6 +47,13 @@ resource "github_repository_ruleset" "this" {
   }
 }
 
+# Allow GitHub Actions to create and approve pull requests
+resource "github_workflow_repository_permissions" "this" {
+  repository                       = github_repository.this.name
+  default_workflow_permissions     = "read"
+  can_approve_pull_request_reviews = true
+}
+
 # Add topics to the repository if any
 resource "github_repository_topics" "this" {
   count = length(var.github_topics) > 0 ? 1 : 0
