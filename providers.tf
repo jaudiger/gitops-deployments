@@ -20,7 +20,18 @@ terraform {
     # Wait Registrar scoped permission (see https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/#compatibility-matrix) for compatibility, before switching to 'CLOUDFLARE_API_TOKEN'
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 5"
+      version = "~> 5.0"
+    }
+
+    # Authentication retrieved from environment variables 'GITHUB_APP_ID', 'GITHUB_APP_INSTALLATION_ID' and 'GITHUB_APP_PEM_FILE'
+    github = {
+      source  = "integrations/github"
+      version = "~> 6.0"
     }
   }
+}
+
+provider "github" {
+  owner = "jaudiger"
+  app_auth {}
 }

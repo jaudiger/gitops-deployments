@@ -46,6 +46,9 @@ jobs:
         env:
           CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
           CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+          GITHUB_APP_ID: ${{ secrets.GH_APP_ID }}
+          GITHUB_APP_INSTALLATION_ID: ${{ secrets.GH_APP_INSTALLATION_ID }}
+          GITHUB_APP_PEM_FILE: ${{ secrets.GH_APP_PEM_FILE }}
           TF_VAR_crates_io_api_token: ${{ secrets.TF_VAR_CRATES_IO_API_TOKEN }}
         run: |
           terraform init -backend-config=access_key=${{ secrets.BACKEND_ACCESS_KEY }} -backend-config=secret_key=${{ secrets.BACKEND_SECRET_KEY }}
