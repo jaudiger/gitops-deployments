@@ -71,7 +71,7 @@ resource "github_repository_topics" "this" {
 resource "github_actions_secret" "this" {
   for_each = var.github_actions_secrets
 
-  repository      = github_repository.this.name
-  secret_name     = each.key
-  plaintext_value = each.value
+  repository  = github_repository.this.name
+  secret_name = each.key
+  value       = each.value
 }
