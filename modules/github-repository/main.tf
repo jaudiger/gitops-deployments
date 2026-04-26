@@ -47,6 +47,11 @@ resource "github_repository_ruleset" "this" {
   }
 }
 
+# Enable Dependabot vulnerability alerts
+resource "github_repository_vulnerability_alerts" "this" {
+  repository = github_repository.this.name
+}
+
 # Allow GitHub Actions to create and approve pull requests
 resource "github_workflow_repository_permissions" "this" {
   repository                       = github_repository.this.name
