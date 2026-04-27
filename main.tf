@@ -26,6 +26,7 @@ module "github_repository" {
   visibility             = try(each.value.visibility, null)
   github_topics          = try(each.value.topics, null)
   github_actions_secrets = try(each.value.actions_secrets, null)
+  required_status_checks = try(each.value.required_status_checks, null)
 }
 
 # Ensure each Cloudflare Page exists, and properly configured

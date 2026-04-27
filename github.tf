@@ -10,6 +10,10 @@ locals {
         "webassembly",
         "wasm",
       ]
+      required_status_checks = [
+        "rust-format (stable)",
+        "rust-lint (stable)",
+      ]
       deployment = {
         domain = {
           name  = "jaudiger.dev"
@@ -30,6 +34,11 @@ locals {
         "rust",
         "brainfuck"
       ]
+      required_status_checks = [
+        "rust-format (stable)",
+        "rust-lint (stable)",
+        "rust-unit-tests",
+      ]
     },
     "calculator-gui-rs" = {
       description = "Calculator GUI with Rust + Bevy (WebAssembly)"
@@ -39,6 +48,10 @@ locals {
         "ui",
         "webassembly",
         "wasm"
+      ]
+      required_status_checks = [
+        "rust-format (stable)",
+        "rust-lint (stable)",
       ]
       deployment = {
         domain = {
@@ -62,6 +75,9 @@ locals {
         "docker",
         "docker-compose",
       ]
+      required_status_checks = [
+        "docker-lint",
+      ]
     },
     "distributed-job-system-rs" = {
       description = "Example of a distributed job system with Rust"
@@ -72,6 +88,11 @@ locals {
         "docker",
         "docker-compose",
       ]
+      required_status_checks = [
+        "docker-lint",
+        "rust-format (stable)",
+        "rust-lint (stable)",
+      ]
     },
     "divan-bench-tools" = {
       description = "Python scripts for processing and comparing Divan benchmark results"
@@ -79,6 +100,11 @@ locals {
         "python",
         "divan",
         "benchmark",
+      ]
+      required_status_checks = [
+        "python-format",
+        "python-lint",
+        "python-unit-tests",
       ]
     },
     "dotfiles" = {
@@ -90,6 +116,12 @@ locals {
         "home-manager",
         "nix-darwin",
       ]
+      required_status_checks = [
+        "nix-format (aarch64-darwin, macos-latest)",
+        "nix-format (aarch64-linux, ubuntu-24.04-arm)",
+        "nix-lint (aarch64-darwin, macos-latest)",
+        "nix-lint (aarch64-linux, ubuntu-24.04-arm)",
+      ]
     },
     "educational-game-rs" = {
       description = "An educational game built with Rust + Bevy"
@@ -98,6 +130,10 @@ locals {
         "bevy",
         "game",
       ]
+      required_status_checks = [
+        "rust-format (stable)",
+        "rust-lint (stable)",
+      ]
     },
     "gitops-deployments" = {
       description = "Source of truth of my deployments"
@@ -105,6 +141,12 @@ locals {
         "gitops",
         "iac",
         "terraform",
+      ]
+      required_status_checks = [
+        "terraform-audit",
+        "terraform-format",
+        "terraform-lint",
+        "terraform-plan",
       ]
     },
     "hello-winxp-zig" = {
@@ -115,6 +157,9 @@ locals {
         "windows-xp",
         "cross-compilation",
       ]
+      required_status_checks = [
+        "zig-lint",
+      ]
     },
     "kube-zig" = {
       description = "A Kubernetes client library written in Zig"
@@ -123,6 +168,10 @@ locals {
         "kubernetes",
         "openapi",
         "code-generation",
+      ]
+      required_status_checks = [
+        "zig-lint",
+        "zig-unit-tests",
       ]
     },
     "noalloc-slip-rs" = {
@@ -133,6 +182,11 @@ locals {
         "crate",
         "no-std",
         "slip"
+      ]
+      required_status_checks = [
+        "rust-format (stable)",
+        "rust-lint (stable)",
+        "rust-unit-tests",
       ]
       actions_secrets = {
         "CRATES_IO_API_TOKEN" = var.crates_io_api_token
@@ -147,6 +201,11 @@ locals {
         "no-std",
         "vec"
       ]
+      required_status_checks = [
+        "rust-format (stable)",
+        "rust-lint (stable)",
+        "rust-unit-tests",
+      ]
       actions_secrets = {
         "CRATES_IO_API_TOKEN" = var.crates_io_api_token
       }
@@ -159,6 +218,9 @@ locals {
         "bash",
         "nushell"
       ]
+      required_status_checks = [
+        "shell-lint",
+      ]
     },
     "personal-website" = {
       description = "The source code of my personal website"
@@ -168,6 +230,9 @@ locals {
         "superhtml",
         "supermd",
         "scripty"
+      ]
+      required_status_checks = [
+        "zig-unit-tests",
       ]
       deployment = {
         domain = {
@@ -197,6 +262,9 @@ locals {
         "dev-container",
         "development-environment",
       ]
+      required_status_checks = [
+        "shell-lint",
+      ]
     },
     "zcodeprism" = {
       description = "A semantic code graph library, CLI, and MCP server written in Zig"
@@ -206,6 +274,10 @@ locals {
         "code-analysis",
         "mcp",
         "lsp",
+      ]
+      required_status_checks = [
+        "zig-lint",
+        "zig-unit-tests",
       ]
     },
   }

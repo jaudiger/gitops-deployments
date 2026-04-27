@@ -33,3 +33,10 @@ variable "github_actions_secrets" {
   default     = {}
   nullable    = false
 }
+
+variable "required_status_checks" {
+  description = "List of status check contexts that must pass before merging into the default branch."
+  type        = list(string)
+  default     = []
+  nullable    = false
+}

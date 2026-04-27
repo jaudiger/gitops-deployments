@@ -44,6 +44,20 @@ resource "github_repository_ruleset" "this" {
       required_review_thread_resolution = true
       required_approving_review_count   = 1
     }
+
+    dynamic "required_status_checks" {
+      for_each = length(var.required_status_checks) > 0 ? [1] : []
+
+      content {
+        dynamic "required_check" {
+          for_each = var.required_status_checks
+
+          content {
+            context = required_check.value
+          }
+        }
+      }
+    }
   }
 }
 
