@@ -1,0 +1,90 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/deployment.yml"
+      - "**/*.tf"
+      - "**/*.tfvars"
+      - "**/*.hcl"
+  pull_request:
+    paths:
+      - ".github/workflows/deployment.yml"
+      - "**/*.tf"
+      - "**/*.tfvars"
+      - "**/*.hcl"
+  workflow_dispatch:
+
+concurrency:
+  group: deployment-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  terraform-plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Install Brioche
+        uses: brioche-dev/setup-brioche@v1.5.0
+
+      - name: Install Terraform
+        run: brioche install -r terraform
+
+      - name: Cache terraform registry
+        uses: actions/cache@v5.0.5
+        with:
+          path: |
+            .terraform
+          key: deployment-${{ hashFiles('**/.terraform.lock.hcl') }}
+
+      - name: Generate the plan of Terraform
+        env:
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+          GITHUB_APP_ID: ${{ secrets.GH_APP_ID }}
+          GITHUB_APP_INSTALLATION_ID: ${{ secrets.GH_APP_INSTALLATION_ID }}
+          GITHUB_APP_PEM_FILE: ${{ secrets.GH_APP_PEM_FILE }}
+          TF_VAR_crates_io_api_token: ${{ secrets.TF_VAR_CRATES_IO_API_TOKEN }}
+        run: |
+          terraform init -backend-config=access_key=${{ secrets.BACKEND_ACCESS_KEY }} -backend-config=secret_key=${{ secrets.BACKEND_SECRET_KEY }}
+          terraform plan
+
+  # The plan is recomputed here rather than reused from the `plan` job. A saved
+  # plan file would contain sensitive resource attributes and uploading it as
+  # an artifact on a public repo would expose them.
+  terraform-apply:
+    needs: terraform-plan
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Install Brioche
+        uses: brioche-dev/setup-brioche@v1.5.0
+
+      - name: Install Terraform
+        run: brioche install -r terraform
+
+      - name: Cache terraform registry
+        uses: actions/cache@v5.0.5
+        with:
+          path: |
+            .terraform
+          key: deployment-${{ hashFiles('**/.terraform.lock.hcl') }}
+
+      - name: Apply the plan of Terraform
+        env:
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+          GITHUB_APP_ID: ${{ secrets.GH_APP_ID }}
+          GITHUB_APP_INSTALLATION_ID: ${{ secrets.GH_APP_INSTALLATION_ID }}
+          GITHUB_APP_PEM_FILE: ${{ secrets.GH_APP_PEM_FILE }}
+          TF_VAR_crates_io_api_token: ${{ secrets.TF_VAR_CRATES_IO_API_TOKEN }}
+        run: |
+          terraform init -backend-config=access_key=${{ secrets.BACKEND_ACCESS_KEY }} -backend-config=secret_key=${{ secrets.BACKEND_SECRET_KEY }}
+          terraform apply -auto-approve

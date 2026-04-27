@@ -1,26 +1,26 @@
-name: Continuous Integration - Static Analysis
+name: Continuous Integration - Static Analysis (Terraform)
 
 on:
   push:
     paths:
-      - ".github/workflows/static-analysis.yml"
+      - ".github/workflows/static-analysis-terraform.yml"
       - "**/*.tf"
       - "**/*.tfvars"
       - "**/*.hcl"
   pull_request:
     paths:
-      - ".github/workflows/static-analysis.yml"
+      - ".github/workflows/static-analysis-terraform.yml"
       - "**/*.tf"
       - "**/*.tfvars"
       - "**/*.hcl"
   workflow_dispatch:
 
 concurrency:
-  group: static-analysis-${{ github.ref_name }}
+  group: static-analysis-terraform-${{ github.ref_name }}
   cancel-in-progress: true
 
 jobs:
-  static-analysis:
+  terraform-format:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,12 +30,22 @@ jobs:
         uses: brioche-dev/setup-brioche@v1.5.0
 
       - name: Install Terraform tools
-        run: |
-          brioche install -r terraform
-          brioche install -r tflint
+        run: brioche install -r terraform
 
       - name: Check formatting
         run: terraform fmt -check -recursive -write=false -diff
+
+  terraform-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Install Brioche
+        uses: brioche-dev/setup-brioche@v1.5.0
+
+      - name: Install Terraform tools
+        run: brioche install -r tflint
 
       - name: Check linting
         run: tflint --recursive

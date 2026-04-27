@@ -1,26 +1,26 @@
-name: Continuous Integration - Audit
+name: Continuous Integration - Audit (Terraform)
 
 on:
   push:
     paths:
-      - ".github/workflows/audit.yml"
+      - ".github/workflows/audit-terraform.yml"
       - "**/*.tf"
       - "**/*.tfvars"
       - "**/*.hcl"
   pull_request:
     paths:
-      - ".github/workflows/audit.yml"
+      - ".github/workflows/audit-terraform.yml"
       - "**/*.tf"
       - "**/*.tfvars"
       - "**/*.hcl"
   workflow_dispatch:
 
 concurrency:
-  group: audit-${{ github.ref_name }}
+  group: audit-terraform-${{ github.ref_name }}
   cancel-in-progress: true
 
 jobs:
-  audit:
+  terraform-audit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
