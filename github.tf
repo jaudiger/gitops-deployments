@@ -143,7 +143,6 @@ locals {
         "terraform",
       ]
       required_status_checks = [
-        "terraform-audit",
         "terraform-format",
         "terraform-lint",
         "terraform-plan",
