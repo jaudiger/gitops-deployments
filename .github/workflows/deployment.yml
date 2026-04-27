@@ -1,19 +1,16 @@
 name: Continuous Deployment
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/deployment.yml"
-      - "**/*.tf"
-      - "**/*.tfvars"
-      - "**/*.hcl"
   pull_request:
     paths:
       - ".github/workflows/deployment.yml"
       - "**/*.tf"
       - "**/*.tfvars"
       - "**/*.hcl"
+  workflow_run:
+    workflows: ["Continuous Integration - Static Analysis (Terraform)"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -22,6 +19,7 @@ concurrency:
 
 jobs:
   terraform-plan:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -57,7 +55,7 @@ jobs:
   # an artifact on a public repo would expose them.
   terraform-apply:
     needs: terraform-plan
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     environment: production
     steps:
