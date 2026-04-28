@@ -157,7 +157,9 @@ locals {
         "cross-compilation",
       ]
       required_status_checks = [
+        "zig-format",
         "zig-lint",
+        "zig-system-test",
       ]
     },
     "kube-zig" = {
@@ -169,6 +171,7 @@ locals {
         "code-generation",
       ]
       required_status_checks = [
+        "zig-format",
         "zig-lint",
         "zig-unit-tests",
       ]
@@ -275,6 +278,7 @@ locals {
         "lsp",
       ]
       required_status_checks = [
+        "zig-format",
         "zig-lint",
         "zig-unit-tests",
       ]
