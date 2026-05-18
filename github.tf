@@ -50,8 +50,7 @@ locals {
         "wasm"
       ]
       required_status_checks = [
-        "rust-format (stable)",
-        "rust-lint (stable)",
+        "ci",
       ]
       deployment = {
         domain = {
