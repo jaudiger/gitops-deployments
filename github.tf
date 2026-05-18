@@ -11,8 +11,7 @@ locals {
         "wasm",
       ]
       required_status_checks = [
-        "rust-format (stable)",
-        "rust-lint (stable)",
+        "ci",
       ]
       deployment = {
         domain = {
@@ -35,9 +34,7 @@ locals {
         "brainfuck"
       ]
       required_status_checks = [
-        "rust-format (stable)",
-        "rust-lint (stable)",
-        "rust-unit-tests",
+        "ci",
       ]
     },
     "calculator-gui-rs" = {
@@ -88,9 +85,7 @@ locals {
         "docker-compose",
       ]
       required_status_checks = [
-        "docker-lint",
-        "rust-format (stable)",
-        "rust-lint (stable)",
+        "ci",
       ]
     },
     "divan-bench-tools" = {
@@ -130,8 +125,7 @@ locals {
         "game",
       ]
       required_status_checks = [
-        "rust-format (stable)",
-        "rust-lint (stable)",
+        "ci",
       ]
     },
     "gitops-deployments" = {
@@ -185,9 +179,7 @@ locals {
         "slip"
       ]
       required_status_checks = [
-        "rust-format (stable)",
-        "rust-lint (stable)",
-        "rust-unit-tests",
+        "ci",
       ]
       actions_secrets = {
         "CRATES_IO_API_TOKEN" = var.crates_io_api_token
@@ -203,9 +195,7 @@ locals {
         "vec"
       ]
       required_status_checks = [
-        "rust-format (stable)",
-        "rust-lint (stable)",
-        "rust-unit-tests",
+        "ci",
       ]
       actions_secrets = {
         "CRATES_IO_API_TOKEN" = var.crates_io_api_token
