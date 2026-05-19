@@ -212,7 +212,7 @@ locals {
         "scripty"
       ]
       required_status_checks = [
-        "zig-unit-tests",
+        "ci",
       ]
       deployment = {
         domain = {
