@@ -72,7 +72,7 @@ locals {
         "docker-compose",
       ]
       required_status_checks = [
-        "docker-lint",
+        "ci",
       ]
     },
     "distributed-job-system-rs" = {
@@ -96,9 +96,7 @@ locals {
         "benchmark",
       ]
       required_status_checks = [
-        "python-format",
-        "python-lint",
-        "python-unit-tests",
+        "ci",
       ]
     },
     "dotfiles" = {
@@ -111,10 +109,7 @@ locals {
         "nix-darwin",
       ]
       required_status_checks = [
-        "nix-format (aarch64-darwin, macos-latest)",
-        "nix-format (aarch64-linux, ubuntu-24.04-arm)",
-        "nix-lint (aarch64-darwin, macos-latest)",
-        "nix-lint (aarch64-linux, ubuntu-24.04-arm)",
+        "ci",
       ]
     },
     "educational-game-rs" = {
@@ -136,9 +131,7 @@ locals {
         "terraform",
       ]
       required_status_checks = [
-        "terraform-format",
-        "terraform-lint",
-        "terraform-plan",
+        "ci",
       ]
     },
     "hello-winxp-zig" = {
@@ -150,9 +143,7 @@ locals {
         "cross-compilation",
       ]
       required_status_checks = [
-        "zig-format",
-        "zig-lint",
-        "zig-system-test",
+        "ci",
       ]
     },
     "kube-zig" = {
@@ -164,9 +155,7 @@ locals {
         "code-generation",
       ]
       required_status_checks = [
-        "zig-format",
-        "zig-lint",
-        "zig-unit-tests",
+        "ci",
       ]
     },
     "noalloc-slip-rs" = {
@@ -254,7 +243,7 @@ locals {
         "development-environment",
       ]
       required_status_checks = [
-        "shell-lint",
+        "ci",
       ]
     },
     "zcodeprism" = {
@@ -267,9 +256,7 @@ locals {
         "lsp",
       ]
       required_status_checks = [
-        "zig-format",
-        "zig-lint",
-        "zig-unit-tests",
+        "ci",
       ]
     },
   }
