@@ -39,12 +39,12 @@ jobs:
   lint-terraform:
     needs: changes
     if: needs.changes.outputs.terraform == 'true'
-    uses: jaudiger/reusable-workflows/.github/workflows/static-analysis-terraform.yml@4aef3115afe05a19785b3e14970ecd4f400cc457
+    uses: jaudiger/reusable-workflows/.github/workflows/static-analysis-terraform.yml@16364121c482897e29680101ea22b8a3ea472c25
 
   audit-terraform:
     needs: changes
     if: needs.changes.outputs.terraform == 'true'
-    uses: jaudiger/reusable-workflows/.github/workflows/audit-terraform.yml@4aef3115afe05a19785b3e14970ecd4f400cc457
+    uses: jaudiger/reusable-workflows/.github/workflows/audit-terraform.yml@16364121c482897e29680101ea22b8a3ea472c25
 
   terraform-plan:
     needs: changes
@@ -86,7 +86,7 @@ jobs:
   lint-actions:
     needs: changes
     if: needs.changes.outputs.workflows == 'true'
-    uses: jaudiger/reusable-workflows/.github/workflows/static-analysis-github-actions.yml@4aef3115afe05a19785b3e14970ecd4f400cc457
+    uses: jaudiger/reusable-workflows/.github/workflows/static-analysis-github-actions.yml@16364121c482897e29680101ea22b8a3ea472c25
 
   ci:
     if: always()
