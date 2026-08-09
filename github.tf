@@ -199,7 +199,7 @@ locals {
         "nushell"
       ]
       required_status_checks = [
-        "shell-lint",
+        "ci",
       ]
     },
     "personal-website" = {
