@@ -15,6 +15,9 @@ resource "github_repository" "this" {
 
 # Create a ruleset for main branch protection
 resource "github_repository_ruleset" "this" {
+  # Private repository rulesets require GitHub Pro, so only public repositories get one
+  count = var.visibility == "public" ? 1 : 0
+
   name        = "main-branch-protection"
   repository  = github_repository.this.name
   target      = "branch"

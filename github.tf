@@ -123,6 +123,17 @@ locals {
         "ci",
       ]
     },
+    "electrical-panel-dimensioning" = {
+      description = "Python scripts for electrical panel dimensioning"
+      visibility  = "private"
+      topics = [
+        "python",
+        "electrical",
+      ]
+      required_status_checks = [
+        "ci",
+      ]
+    },
     "gitops-deployments" = {
       description = "Source of truth of my deployments"
       topics = [
@@ -192,6 +203,19 @@ locals {
     },
     "personal-scripts" = {
       description = "The scripts I use to automate my daily tasks"
+      topics = [
+        "automation",
+        "script",
+        "bash",
+        "nushell"
+      ]
+      required_status_checks = [
+        "ci",
+      ]
+    },
+    "work-scripts" = {
+      description = "The scripts I use to automate my work tasks"
+      visibility  = "private"
       topics = [
         "automation",
         "script",
