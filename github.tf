@@ -201,6 +201,17 @@ locals {
         "CRATES_IO_API_TOKEN" = var.crates_io_api_token
       }
     },
+    "nixpkgs" = {
+      description = "Personal fork of NixOS/nixpkgs"
+      fork_from = {
+        owner = "NixOS"
+        repo  = "nixpkgs"
+      }
+      topics = [
+        "nix",
+        "nixpkgs",
+      ]
+    },
     "personal-scripts" = {
       description = "The scripts I use to automate my daily tasks"
       topics = [
