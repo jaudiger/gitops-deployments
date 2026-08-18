@@ -8,6 +8,39 @@ variable "description" {
   type        = string
 }
 
+variable "fork_from" {
+  description = "Upstream repository to fork, if this repository should be created as a fork."
+  type = object({
+    owner = string
+    repo  = string
+  })
+  default = null
+
+  validation {
+    condition = var.fork_from == null || try(
+      trimspace(var.fork_from.owner) != "" && trimspace(var.fork_from.repo) != "",
+      false
+    )
+    error_message = "fork_from must contain non-empty owner and repo values."
+  }
+}
+
+variable "repository_policies" {
+  description = "High-level policies applied to the repository."
+  type = object({
+    protect_default_branch = optional(bool)
+    workflows              = optional(string, "read-only")
+    dependency_alerts      = optional(bool, true)
+  })
+  default  = {}
+  nullable = false
+
+  validation {
+    condition     = contains(["read-only", "read-write"], var.repository_policies.workflows)
+    error_message = "workflows must be one of 'read-only' or 'read-write'."
+  }
+}
+
 variable "visibility" {
   description = "Visibility of the repository."
   type        = string

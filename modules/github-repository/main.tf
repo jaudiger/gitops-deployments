@@ -1,7 +1,20 @@
+locals {
+  protect_default_branch = coalesce(
+    var.repository_policies.protect_default_branch,
+    var.fork_from == null
+  )
+  workflow_permissions      = var.repository_policies.workflows == "read-write" ? "write" : "read"
+  can_approve_pull_requests = var.repository_policies.workflows == "read-write"
+}
+
 # Manage the GitHub repository
 resource "github_repository" "this" {
   name        = var.name
   description = var.description
+
+  fork         = var.fork_from != null
+  source_owner = try(var.fork_from.owner, null)
+  source_repo  = try(var.fork_from.repo, null)
 
   visibility = var.visibility
 
@@ -16,7 +29,7 @@ resource "github_repository" "this" {
 # Create a ruleset for main branch protection
 resource "github_repository_ruleset" "this" {
   # Private repository rulesets require GitHub Pro, so only public repositories get one
-  count = var.visibility == "public" ? 1 : 0
+  count = local.protect_default_branch && var.visibility == "public" ? 1 : 0
 
   name        = "main-branch-protection"
   repository  = github_repository.this.name
@@ -66,14 +79,16 @@ resource "github_repository_ruleset" "this" {
 
 # Enable Dependabot vulnerability alerts
 resource "github_repository_vulnerability_alerts" "this" {
+  count = var.repository_policies.dependency_alerts ? 1 : 0
+
   repository = github_repository.this.name
 }
 
-# Allow GitHub Actions to create and approve pull requests
+# Configure GitHub Actions workflow permissions
 resource "github_workflow_repository_permissions" "this" {
   repository                       = github_repository.this.name
-  default_workflow_permissions     = "read"
-  can_approve_pull_request_reviews = true
+  default_workflow_permissions     = local.workflow_permissions
+  can_approve_pull_request_reviews = local.can_approve_pull_requests
 }
 
 # Add topics to the repository if any

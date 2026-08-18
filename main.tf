@@ -23,6 +23,8 @@ module "github_repository" {
 
   name                   = each.key
   description            = each.value.description
+  fork_from              = try(each.value.fork_from, null)
+  repository_policies    = try(each.value.repository_policies, {})
   visibility             = try(each.value.visibility, null)
   github_topics          = try(each.value.topics, null)
   github_actions_secrets = try(each.value.actions_secrets, null)
