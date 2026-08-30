@@ -168,6 +168,9 @@ locals {
       required_status_checks = [
         "ci",
       ]
+      repository_policies = {
+        workflows = "read-write"
+      }
     },
     "noalloc-slip-rs" = {
       description = "A Rust crate for encoding and decoding SLIP frames in no-std environments"
