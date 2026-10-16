@@ -118,10 +118,25 @@ locals {
         "rust",
         "bevy",
         "game",
+        "webassembly",
+        "wasm",
       ]
       required_status_checks = [
         "ci",
       ]
+      deployment = {
+        domain = {
+          name  = "jaudiger.dev"
+          owner = false
+        }
+        subdomains = [
+          "educational-game-rs",
+        ]
+      }
+      actions_secrets = {
+        "CLOUDFLARE_API_TOKEN"  = cloudflare_account_token.pages_token.value
+        "CLOUDFLARE_ACCOUNT_ID" = var.cloudflare_account_id
+      }
     },
     "electrical-panel-dimensioning" = {
       description = "Python scripts for electrical panel dimensioning"
