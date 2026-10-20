@@ -5,16 +5,18 @@ locals {
   }
 }
 
-# Ensure each Cloudflare domain exists, and properly configured
-resource "cloudflare_registrar_domain" "this" {
-  for_each = local.cloudflare_domains
-
-  account_id  = var.cloudflare_account_id
-  domain_name = each.key
-  auto_renew  = each.value.auto_renew
-  locked      = true
-  privacy     = true
-}
+# Disabled until the provider supports Cloudflare's current Registrar API because its legacy endpoints have been retired.
+# Removed in https://github.com/cloudflare/terraform-provider-cloudflare/pull/7410.
+# Replacement tracked in https://github.com/cloudflare/terraform-provider-cloudflare/issues/7360.
+# resource "cloudflare_registrar_domain" "this" {
+#   for_each = local.cloudflare_domains
+#
+#   account_id  = var.cloudflare_account_id
+#   domain_name = each.key
+#   auto_renew  = each.value.auto_renew
+#   locked      = true
+#   privacy     = true
+# }
 
 # Ensure each GitHub repository exists, and properly configured
 module "github_repository" {

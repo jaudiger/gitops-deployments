@@ -2,7 +2,7 @@ locals {
   # List all the domains that need to be managed
   cloudflare_domains = {
     "jaudiger.dev" = {
-      auto_renew = true
+      # auto_renew = true
     },
   }
 
