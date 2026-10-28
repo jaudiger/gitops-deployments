@@ -75,6 +75,16 @@ locals {
         "ci",
       ]
     },
+    "dev-containers" = {
+      description = "Development containers"
+      topics = [
+        "dev-container",
+        "development-environment",
+      ]
+      required_status_checks = [
+        "ci",
+      ]
+    },
     "distributed-job-system-rs" = {
       description = "Example of a distributed job system with Rust"
       topics = [
@@ -187,6 +197,17 @@ locals {
         workflows = "read-write"
       }
     },
+    "nixpkgs" = {
+      description = "Personal fork of NixOS/nixpkgs"
+      fork_from = {
+        owner = "NixOS"
+        repo  = "nixpkgs"
+      }
+      topics = [
+        "nix",
+        "nixpkgs",
+      ]
+    },
     "noalloc-slip-rs" = {
       description = "A Rust crate for encoding and decoding SLIP frames in no-std environments"
       topics = [
@@ -219,32 +240,8 @@ locals {
         "CRATES_IO_API_TOKEN" = var.crates_io_api_token
       }
     },
-    "nixpkgs" = {
-      description = "Personal fork of NixOS/nixpkgs"
-      fork_from = {
-        owner = "NixOS"
-        repo  = "nixpkgs"
-      }
-      topics = [
-        "nix",
-        "nixpkgs",
-      ]
-    },
     "personal-scripts" = {
       description = "The scripts I use to automate my daily tasks"
-      topics = [
-        "automation",
-        "script",
-        "bash",
-        "nushell"
-      ]
-      required_status_checks = [
-        "ci",
-      ]
-    },
-    "work-scripts" = {
-      description = "The scripts I use to automate my work tasks"
-      visibility  = "private"
       topics = [
         "automation",
         "script",
@@ -289,11 +286,14 @@ locals {
         "workflow-call",
       ]
     },
-    "dev-containers" = {
-      description = "Development containers"
+    "work-scripts" = {
+      description = "The scripts I use to automate my work tasks"
+      visibility  = "private"
       topics = [
-        "dev-container",
-        "development-environment",
+        "automation",
+        "script",
+        "bash",
+        "nushell"
       ]
       required_status_checks = [
         "ci",
