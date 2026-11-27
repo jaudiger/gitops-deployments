@@ -182,6 +182,19 @@ locals {
         "ci",
       ]
     },
+    "home-layout-designer-rs" = {
+      description = "An application for designing house floor plans with Rust + Bevy"
+      visibility  = "private"
+      topics = [
+        "rust",
+        "bevy",
+        "plan",
+        "design",
+      ]
+      required_status_checks = [
+        "ci",
+      ]
+    },
     "investment-portfolio-tracker" = {
       description = "Investment Portfolio Tracker"
       visibility  = "private"
