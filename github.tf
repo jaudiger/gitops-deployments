@@ -182,6 +182,17 @@ locals {
         "ci",
       ]
     },
+    "investment-portfolio-tracker" = {
+      description = "Investment Portfolio Tracker"
+      visibility  = "private"
+      topics = [
+        "python",
+        "finance",
+      ]
+      required_status_checks = [
+        "ci",
+      ]
+    },
     "kube-zig" = {
       description = "A Kubernetes client library written in Zig"
       topics = [
